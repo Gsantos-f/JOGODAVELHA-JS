@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>JOGO DA VELHA</h1>
+        <p>O jogo se encontra no console, aperte com o botão direito e clique em "inspecionar elemento", depois clique na aba do console
+        </p>
+        <button onclick="velha()">VELHA</button>
+        <script>
+            function velha() {
+
+                let casas = ["-","-","-","-","-","-","-","-","-"]
+                let ganhador = ""
+                let vezJogar = "X"
+                let turno = 0
+                let casa = ""
+                console.log("Bem vindo ao jogo da velha!")
+                while (turno <= 9){
+
+                    function game(){
+                        if((casas[0] == vezJogar && casas[1] == vezJogar && casas[2] == vezJogar) ||
+                            (casas[3] == vezJogar && casas[4] == vezJogar && casas[5] == vezJogar) ||
+                            (casas[6] == vezJogar && casas[7] == vezJogar && casas[8] == vezJogar) ||
+                            (casas[0] == vezJogar && casas[4] == vezJogar && casas[8] == vezJogar) ||
+                            (casas[6] == vezJogar && casas[4] == vezJogar && casas[2] == vezJogar) ||
+                            (casas[0] == vezJogar && casas[3] == vezJogar && casas[6] == vezJogar) ||
+                            (casas[1] == vezJogar && casas[4] == vezJogar && casas[7] == vezJogar) ||
+                            (casas[6] == vezJogar && casas[7] == vezJogar && casas[8] == vezJogar) ){
+    
+                            ganhador = vezJogar   
+                        } else {
+                            if( turno == 9){
+                                ganhador = "E"
+                            }
+                        }
+                    }
+                    
+                    function verificarACasa(){
+                        if(casas[casa - 1] == "-"){
+                            casas[casa - 1] = vezJogar
+                            turno ++
+                            game()
+                            trocar()
+                        } else {
+                            console.log("Essa casa esta ocupada")
+                        }
+                    }
+                    
+                    function trocar(){
+                         if (vezJogar == "X"){
+                             vezJogar = "O"
+                             
+                         } else {
+                             vezJogar = "X"
+                             
+                         }
+                     }
+                     
+                    console.log("")
+                    console.log("A vez de jogar é de: ", vezJogar)
+                    console.log(casas[0],"|",casas[1],"|",casas[2])
+                    console.log("---------")
+                    console.log(casas[3],"|",casas[4],"|",casas[5])
+                    console.log("---------")
+                    console.log(casas[6],"|",casas[7],"|",casas[8])
+                    console.log("")
+
+                    if(ganhador == ""){
+                        casa = prompt("Escolha uma casa numerada de 1 a 9")
+                        verificarACasa()
+                    }else{
+                        turno = 10
+                    }
+
+                }
+
+                if(ganhador == "X" || ganhador == "O"){
+                    console.log("O GANHADOR É: ", ganhador, " PALMAS :3")
+                } else if(ganhador == "E"){
+                    console.log("DEU VELHA")
+                }
+            }
+        </script>
+    </body>
+</html>
